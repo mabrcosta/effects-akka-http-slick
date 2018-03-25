@@ -10,13 +10,12 @@ import javax.inject.Inject
 import org.atnos.eff.Eff
 import org.atnos.eff.EitherEffect._
 import org.atnos.eff.ReaderEffect._
-import slick.dbio.DBIO
 
 import scala.concurrent.ExecutionContext
 
 class KeysServiceImpl[TDBIO[_], TDBOut[_]] @Inject()(
-      private val keysDal: KeysDal[DBIO],
-      private val effectsDatabaseExecutor: EffectsDatabaseExecutor[DBIO, TDBOut],
+      private val keysDal: KeysDal[TDBIO],
+      private val effectsDatabaseExecutor: EffectsDatabaseExecutor[TDBIO, TDBOut],
       implicit val executionContext: ExecutionContext)
     extends KeysService[TDBIO, TDBOut] {
 
