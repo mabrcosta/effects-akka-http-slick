@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home:-.}/logs/application.log</file>
+        <encoder>
+            <pattern>%date{MM/dd HH:mm:ss.SSS} %-5level[%.15thread] %logger{1} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%date{MM/dd HH:mm:ss.SSS} %-5level[%.15thread] %logger{1} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT" />
+    </appender>
+
+    <appender name="ASYNCFILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE" />
+    </appender>
+
+    <logger name="slick.backend.DatabaseComponent.action" level="info"/>
+    <logger name="slick.jdbc.JdbcBackend.statement" level="info"/>
+    <logger name="slick.jdbc" level="error" />
+    <logger name="slick.ast" level="error" />
+    <logger name="slick.memory" level="error" />
+    <logger name="slick.relational" level="error" />
+    <logger name="slick.compiler" level="error" />
+    <logger name="com.wordnik" level="error" />
+    <logger name="com.gettyimages" level="error" />
+    <logger name="org.reflections" level="error" />
+    <logger name="com.zaxxer.hikari" level="error" />
+
+    <logger name="com.mabrcosta.keysmanager" level="debug" />
+
+    <root level="debug">
+        <appender-ref ref="ASYNCSTDOUT" />
+    </root>
+
+</configuration>
+

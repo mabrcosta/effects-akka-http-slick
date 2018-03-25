@@ -1,0 +1,7 @@
+target/
+*.class
+.idea/
+*.jpg
+*/logs
+logs
+*.orig
